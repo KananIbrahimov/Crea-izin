@@ -284,7 +284,7 @@
     color:#111;
     flex-shrink:0;
   }
-  .paper .to-line{ margin-bottom:2px; text-align:right; }
+  .paper .to-line{ margin-bottom:2px; text-align:right; font-weight:600; }
   .paper .director{ font-weight:600; text-decoration:underline; margin-bottom:16px; text-align:right; }
   .paper .position-line{ margin-bottom:2px; text-align:right; }
   .paper .caption{ font-style:italic; text-align:right; margin-bottom:16px; }
@@ -297,10 +297,11 @@
     letter-spacing:2px;
     margin:0 0 24px;
   }
-  .paper .body-text{ margin-bottom:40px; text-align:justify; }
+  .paper .body-text{ margin-bottom:78px; text-align:justify; text-indent:0.5625in; line-height:3; }
   .paper .sign-row{ font-weight:400; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
   .paper .sign-label{ font-weight:600; }
   .paper .placeholder{ color:#999; font-style:italic; }
+  .paper .sig-placeholder{ color:#111; font-style:normal; }
   .paper .sig-img{
     height:70px; max-width:280px; object-fit:contain; margin-left:-4px;
     -webkit-print-color-adjust:exact; print-color-adjust:exact;
@@ -354,8 +355,8 @@
       <div class="field">
         <label for="companySelect">Şirkət</label>
         <select id="companySelect">
-          <option value="crea_retail">"CREA RETAIL SOLUTIONS" MMC</option>
-          <option value="crea_inc">"CREA INC" MMC</option>
+          <option value="crea_retail">“CREA RETAIL SOLUTIONS” MMC</option>
+          <option value="crea_inc">“CREA INC” MMC</option>
         </select>
         <div class="hint" id="directorPreview"></div>
       </div>
@@ -437,8 +438,8 @@
 
 <script>
 const COMPANIES = {
-  crea_retail: { company: '"CREA RETAIL SOLUTIONS" MMC', director: 'Mətanət Keser' },
-  crea_inc:    { company: '"CREA INC" MMC',              director: 'Ahmet Keser' }
+  crea_retail: { company: '“CREA RETAIL SOLUTIONS” MMC', director: 'Mətanət Keser' },
+  crea_inc:    { company: '“CREA INC” MMC',              director: 'Ahmet Keser' }
 };
 const POSITION_TEXT = 'İnformasiya Texnologiyaları üzrə mütəxəssis';
 const EMPLOYEES = ['Elnur Abbasov','Fuad Müzəffərzədə','Kənan İbrahimov','Sadiq Hüseynov','Kənan Camalzadə'];
@@ -687,7 +688,7 @@ function renderPaper(){
   const sig = signaturesCache[employee];
   const sigHtml = sig
     ? `<img class="sig-img" src="${sig}" alt="imza">`
-    : `<span class="placeholder">_______________</span>`;
+    : `<span class="sig-placeholder">____________________</span>`;
 
   document.getElementById('paperContent').innerHTML = `
     <div class="to-line">${company} Məhdud Məsuliyyətli Cəmiyyətinin direktoru</div>
@@ -698,8 +699,8 @@ function renderPaper(){
     <div class="caption applicant-caption">(işçinin adı və soyadı)</div>
     <div class="title">Ə R İ Z Ə</div>
     <div class="body-text">${bodyHtml}</div>
-    <div class="sign-row"><span class="sign-label">İmza:</span> ${sigHtml}</div>
-    <div class="sign-row"><span class="sign-label">Tarix:</span> ${signDateHtml}</div>
+    <div class="sign-row" style="margin-bottom:34px;"><span class="sign-label">İmza:</span> ${sigHtml}</div>
+    <div class="sign-row"><span class="sign-label">Tarix:</span> <strong>${signDateHtml}</strong></div>
   `;
 }
 
